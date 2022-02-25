@@ -1,27 +1,17 @@
 <html>
 
 <body>
-
   <h1>
-
     <div id="word">
     </div>
   </h1>
-
-
   <button id="reveal">Reveal</button>
+  <button id="next">Next Word</button>
 
   <h3>
-
     <div id="meaning">
     </div>
     <h3>
-
-
-      <button id="next">Next Word</button>
-
-
-
       <script type="text/javascript">
         const str = `
 Activated Pack: The status of a pack of instant tickets when the first winning ticket in the pack has been validated or the pack has been assigned to a retailer for a specified period of time.
@@ -202,6 +192,11 @@ World Lottery Association (WLA): The professional lottery association representi
                     chosenWord = words[randomIndex]; const chosenMeaning = meanings[randomIndex];
 
 
+          if (wordDiv.innerText == chosenWord) {
+
+            putNewWord()
+            return;
+          }
           wordDiv.innerText = chosenWord;
           meaningDiv.innerText = chosenMeaning
 
