@@ -184,12 +184,18 @@ World Lottery Association (WLA): The professional lottery association representi
         }
 
         const putNewWord = () => {
-          const re = /([^:^\n]*)/g; const match = str.match(re); const newMatch =
-            match.filter((str) => str != ""); const meanings = newMatch.filter((str,
-              index) => index % 2 == 1); const words = newMatch.filter((str, index) => index
-                % 2 == 0); const wordLength = meanings.length - 1; const randomIndex =
-                  Math.floor(Math.random() * wordLength); console.log(randomIndex); const
-                    chosenWord = words[randomIndex]; const chosenMeaning = meanings[randomIndex];
+          const re = /([^:^\n]*)/g; const match = str.match(re);
+          const newMatch =
+            match.filter((str) => str != "");
+          const meanings = newMatch.filter((str,
+            index) => index % 2 == 1);
+          const words = newMatch.filter((str, index) => index
+            % 2 == 0);
+          const wordLength = meanings.length - 1;
+          const randomIndex =
+            Math.floor(Math.random() * wordLength); console.log(randomIndex); const
+              chosenWord = words[randomIndex];
+          const chosenMeaning = meanings[randomIndex];
 
 
           if (wordDiv.innerText == chosenWord) {
