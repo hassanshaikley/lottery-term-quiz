@@ -1,19 +1,29 @@
 <html>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<body>
-  <h1>
-    <div id="word">
-    </div>
-  </h1>
-  <button id="reveal">Reveal</button>
-  <button id="next">Next Word</button>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/css/uikit.min.css" />
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/js/uikit.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/uikit@3.11.1/dist/js/uikit-icons.min.js"></script>
 
-  <h3>
-    <div id="meaning">
-    </div>
-    <h3>
-      <script type="text/javascript">
-        const str = `
+
+<body class="uk-background-primary" style="height: 100%;">
+
+
+  <div id="word" class="uk-text-large uk-text-bold uk-text-emphasis uk-text-center uk-padding">
+  </div>
+  <div style="text-align: center;">
+    <button class="uk-button uk-button-default " id="reveal"><span uk-icon="icon: play; ratio: 1"></span>
+      Reveal</button>
+    <button class="uk-button uk-button-default " id="next"><span uk-icon="icon: refresh; ratio: 1"></span> Next
+      Word</button>
+  </div>
+
+
+  <div id="meaning" class="uk-text-large uk-text-emphasis uk-text-center uk-padding">
+  </div>
+
+  <script type="text/javascript">
+    const str = `
 Activated Pack: The status of a pack of instant tickets when the first winning ticket in the pack has been validated or the pack has been assigned to a retailer for a specified period of time.
 Advance Bet: The ability of a player to purchase wagers on draws that will be held in the future. The number of draws and time span vary from lottery to lottery.
 Advertised Jackpot: The minimum prize amount the lottery estimates it will pay to the winner of a specific draw over a set annuity period.
@@ -168,53 +178,57 @@ World Lottery Association (WLA): The professional lottery association representi
 
       `;
 
-        const wordDiv = document.getElementById('word')
-        const meaningDiv = document.getElementById('meaning')
-        const revealDiv = document.getElementById('reveal')
-        const nextDiv = document.getElementById('next')
+    const wordDiv = document.getElementById('word')
+    const meaningDiv = document.getElementById('meaning')
+    const revealDiv = document.getElementById('reveal')
+    const nextDiv = document.getElementById('next')
 
-        revealDiv.onclick = () => {
-          meaningDiv.style.visibility = ""
-        }
+    revealDiv.onclick = () => {
+      meaningDiv.style.visibility = ""
 
-
-        nextDiv.onclick = () => {
-          putNewWord()
-
-        }
-
-        const putNewWord = () => {
-          const re = /([^:^\n]*)/g; const match = str.match(re);
-          const newMatch =
-            match.filter((str) => str != "");
-          const meanings = newMatch.filter((str,
-            index) => index % 2 == 1);
-          const words = newMatch.filter((str, index) => index
-            % 2 == 0);
-          const wordLength = meanings.length - 1;
-          const randomIndex =
-            Math.floor(Math.random() * wordLength); console.log(randomIndex); const
-              chosenWord = words[randomIndex];
-          const chosenMeaning = meanings[randomIndex];
+      revealDiv.disabled = true;
+      disabled
+    }
 
 
-          if (wordDiv.innerText == chosenWord) {
+    nextDiv.onclick = () => {
+      putNewWord()
+      revealDiv.disabled = false;
 
-            putNewWord()
-            return;
-          }
-          wordDiv.innerText = chosenWord;
-          meaningDiv.innerText = chosenMeaning
+    }
 
-          meaningDiv.style.visibility = "hidden"
+    const putNewWord = () => {
+      const re = /([^:^\n]*)/g; const match = str.match(re);
+      const newMatch =
+        match.filter((str) => str != "");
+      const meanings = newMatch.filter((str,
+        index) => index % 2 == 1);
+      const words = newMatch.filter((str, index) => index
+        % 2 == 0);
+      const wordLength = meanings.length - 1;
+      const randomIndex =
+        Math.floor(Math.random() * wordLength); console.log(randomIndex); const
+          chosenWord = words[randomIndex];
+      const chosenMeaning = meanings[randomIndex];
 
 
-        }
+      if (wordDiv.innerText == chosenWord) {
 
         putNewWord()
+        return;
+      }
+      wordDiv.innerText = chosenWord;
+      meaningDiv.innerText = chosenMeaning
+
+      meaningDiv.style.visibility = "hidden"
 
 
-      </script>
+    }
+
+    putNewWord()
+
+
+  </script>
 </body>
 
 </html>
